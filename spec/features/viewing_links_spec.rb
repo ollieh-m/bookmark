@@ -1,5 +1,3 @@
-#require '/models/link.rb'
-
 feature 'Viewing Links' do
 
   scenario 'should show a link when visiting homepage' do
