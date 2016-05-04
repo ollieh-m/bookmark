@@ -2,16 +2,14 @@ require 'data_mapper'
 require 'dm-postgres-adapter'
 require 'dm-migrations'
 
-class Bookmark
+class Tag
 
   include DataMapper::Resource
 
   property :id,     Serial
   property :name,   String
-  property :url,    String
 
-  has n, :tags, :through => Resource
-
+  has n, :bookmarks, :through => Resource
 end
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/bookmark_manager_#{ENV['RACK_ENV']}")

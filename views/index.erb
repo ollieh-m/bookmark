@@ -6,7 +6,14 @@
   <% @bookmarks.each do |bookmark| %>
   <li>
     Title: <%= bookmark.name %>
-    URL:   <%= bookmark.url   %>
+    URL:   <%= bookmark.url  %>
+    Tags:   <%= bookmark.tags.all %>
+
+    <!-- <form method="post" action="/add_tag">
+      <input type="text" name="<%= bookmark.name %>">
+      <input type="submit" value="Add">
+    </form> -->
+
   </li>
   <% end %>
 </ul>
