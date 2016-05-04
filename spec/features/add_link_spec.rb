@@ -1,5 +1,5 @@
-
 feature "add bookmarks" do
+
   scenario "user can add another bookmarks" do
     visit('/')
     click_link('Add Link')
@@ -8,4 +8,5 @@ feature "add bookmarks" do
     click_button('Save')
     expect(page).to have_content "Sample Title"
   end
+
 end
