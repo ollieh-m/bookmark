@@ -9,6 +9,7 @@ class Bookmark
   property :id,     Serial
   property :name,   String
   property :url,    String
+
 end
 
 DataMapper.setup(:default, "postgres://localhost/bookmark_manager_test")
