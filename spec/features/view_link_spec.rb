@@ -3,8 +3,7 @@ feature 'links on the home page' do
 		Link.create(
 			:id			=> 1,
 			:title	=> "Google",		
-			:url	  => "https://www.google.co.uk/",
-		  :created_at => Time.now
+			:url	  => "https://www.google.co.uk/"
 		)
 		
 		visit '/links'
