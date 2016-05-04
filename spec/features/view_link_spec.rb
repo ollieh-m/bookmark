@@ -6,8 +6,9 @@ feature 'links on the home page' do
 		)
 		
 		visit '/links'
-		#within 'ul#links' do
+		expect(page.status_code).to eq 200
+		# within 'ul#links' do
 			expect(page).to have_content "Google"
-		#end
+		# end
 	end
 end
