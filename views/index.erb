@@ -7,7 +7,7 @@
   <li>
     Title: <%= bookmark.name %>
     URL:   <%= bookmark.url  %>
-    Tags:   <%= bookmark.tags.all %>
+    Tags:   <%= bookmark.tags.first.name %>
 
     <!-- <form method="post" action="/add_tag">
       <input type="text" name="<%= bookmark.name %>">

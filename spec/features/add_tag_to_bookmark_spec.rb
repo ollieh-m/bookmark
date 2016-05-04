@@ -5,9 +5,8 @@ feature "add tags to bookmarks" do
     click_link('Add Link')
     fill_in('title', :with => 'Sample Title')
     fill_in('url', :with => 'http://www.sample.org')
-    click_button('Save')
     fill_in('tag', :with => 'Sample Tag')
-    click_button('Add Tag')
+    click_button('Save')
     expect(page).to have_content 'Sample Tag'
   end
 
