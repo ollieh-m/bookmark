@@ -7,6 +7,7 @@ require File.join(File.dirname(__FILE__), '..', 'app/app.rb')
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require 'database_cleaner'
 require './app/app'
 
 Capybara.app = BookmarkManager
@@ -53,6 +54,24 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+
+
+  # Everything in this block runs once before all the tests run
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  # Everything in this block runs once before each individual test
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  # Everything in this block runs once after each individual test
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.

@@ -9,9 +9,10 @@ gem 'rspec-sinatra'
 gem 'capybara'
 
 group :test do
- gem 'rspec'
- gem 'rubocop-rspec'
- gem 'rubocop'
- gem 'coveralls', require: false
- gem 'byebug'
+  gem 'database_cleaner'
+  gem 'rspec'
+  gem 'rubocop-rspec'
+  gem 'rubocop'
+  gem 'coveralls', require: false
+  gem 'byebug'
 end
