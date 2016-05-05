@@ -8,7 +8,7 @@ gem 'rspec'
 gem 'capybara'
 gem 'sinatra'
 gem 'rspec-sinatra'
-gem 'rakefile'
+gem 'rake'
 gem 'bcrypt'
 
 group :test do
