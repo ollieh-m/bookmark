@@ -9,6 +9,7 @@ require 'capybara/rspec'
 require 'rspec'
 require 'tilt/erb'
 require './app/models/link'
+require 'web_helper'
 
 Capybara.app = BookmarkManager
 

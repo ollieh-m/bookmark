@@ -14,9 +14,4 @@ namespace :db do
     DataMapper.auto_migrate!
     puts "Auto-migrate complete (data was lost)"
   end
-
-  desc "hello world"
-  task :hello do
-    puts "hello world!"
-  end
 end
