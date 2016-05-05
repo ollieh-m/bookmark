@@ -11,7 +11,8 @@ feature 'filtering links by tag' do
     fill_in('url', with: 'www.example2.com')
     fill_in('tag', with: 'bubbles')
     click_button('Submit')
-    visit('/tags/bubbles')
+    fill_in('tag_filter', with: 'bubbles')
+    click_button('Filter')
     expect(page).to have_content('Example2')
     expect(page).not_to have_content('Example1')
   end

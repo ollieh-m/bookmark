@@ -1,9 +1,5 @@
 <h1> Links </h1>
 
-<% if @logged_in_user %>
-   <h2>Welcome <%= @logged_in_user%></h2>
-<% end %>
-
 <ul id='links'>
   <% @links.each do |link| %>
     <li>
@@ -13,5 +9,12 @@
     </li>
   <% end %>
 </ul>
+
+<form action='/tag_filter' method='post'>
+  <input type='text' name='tag_filter'>
+  <input type='submit' value='Filter'>
+</form>
+
+<a href='/links'>View all links</a>
 
 <a href='/links/new'>Create a new link</a>

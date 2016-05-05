@@ -5,7 +5,7 @@ feature 'user signup' do
     fill_in('password', with: 'password1')
     click_button('Sign up')
     expect(User.all.count).to eq 1
-
+    expect(User.first.email).to eq('user@example.com')
     expect(page).to have_content('Welcome user@example.com')
   end
 

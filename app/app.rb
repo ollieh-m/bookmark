@@ -7,22 +7,28 @@ class BookmarkManager < Sinatra::Base
 	enable :sessions
 	set :session_secret, 'super secret'
 
+  helpers do
+    def current_user
+      @logged_in_user ||= User.get(session[:user_id])
+    end
+    def create_user
+      @user = User.new(email: params[:email])
+      @user.password = params[:password]
+      @user.save
+    end
+  end
+
 	get '/' do
 		erb :signup
 	end
 
 	post '/signup' do
-		user = User.new(email: params[:email])
-		user.password = params[:password]
-		user.save
-		session[:user_id] = user.id
+		create_user
+		session[:user_id] = @user.id
 		redirect '/links'
 	end
 
   get '/links' do
-  	if session[:user_id]
-  	  @logged_in_user = User.get(session[:user_id]).email
-    end
     @links = Link.all
     erb :'links/index'
   end
@@ -39,6 +45,10 @@ class BookmarkManager < Sinatra::Base
   	end
     link.save
   	redirect '/links'
+  end
+
+  post '/tag_filter' do
+    redirect("/tags/#{params[:tag_filter]}")
   end
 
   get '/tags/:tag_filter' do
