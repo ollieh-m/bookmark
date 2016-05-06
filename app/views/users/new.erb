@@ -1,8 +1,11 @@
-<h1> Please sing up </h1>
+ <% if flash[:error] %>
+  <div id='error'><%= flash[:error] %></div>
+ <% end %>
+<h1> Please sign up </h1>
 <form action="/users" method="post">
   <label for="email">
     Email:<br><br>
-    <input type="text" name="email">
+    <input type="text" name="email" value="<%= @user.email %>" >
   </label>
   <br><br>
   <label for='password'>

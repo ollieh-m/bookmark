@@ -8,7 +8,7 @@ class User
   validates_confirmation_of :password
   property :id,       Serial
   property :email,    String
-  property :password_digest, Text
+  property :password_digest, Text, required: true
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
