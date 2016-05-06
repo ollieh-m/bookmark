@@ -13,8 +13,8 @@ class User
   property :password_hash, 	Text
 
   def password=(actual_password)
- 	@password = Password.create(actual_password)
-    self.password_hash = @password
+ 	@password = actual_password
+    self.password_hash = Password.create(actual_password)
   end
 
   validates_confirmation_of :password

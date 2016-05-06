@@ -1,7 +1,7 @@
 feature 'user signup' do
 
   scenario 'successfully signing up a user' do
-    visit('/')
+    visit('/users')
     fill_in('email', with: 'user@example.com')
     fill_in('password', with: 'password1')
     fill_in('password_confirmation', with: 'password1')
@@ -12,11 +12,13 @@ feature 'user signup' do
   end
 
   scenario 'providing a password confirmation that does not match the password' do
-    visit('/')
+    visit('/users')
     fill_in('email', with: 'user@example.com')
     fill_in('password', with: 'password1')
     fill_in('password_confirmation', with: 'password2')
     click_button('Sign up')
+    expect(current_path).to eq '/users'
+    expect(page).to have_content('Password and confirmation password do not match')
     expect(User.all.count).to eq 0
   end
 
