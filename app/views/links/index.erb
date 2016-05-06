@@ -1,0 +1,20 @@
+<h1> Links </h1>
+
+<ul id='links'>
+  <% @links.each do |link| %>
+    <li>
+      Title: <%= link.title %>
+      URL:   <%= link.url   %>
+      Tag:   <%= link.tags.map{|tag| tag.tag} %>
+    </li>
+  <% end %>
+</ul>
+
+<form action='/tag_filter' method='post'>
+  <input type='text' name='tag_filter'>
+  <input type='submit' value='Filter'>
+</form>
+
+<a href='/links'>View all links</a>
+
+<a href='/links/new'>Create a new link</a>
