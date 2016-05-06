@@ -1,6 +1,13 @@
- <% if flash[:error] %>
-  <div id='error'><%= flash[:error] %></div>
+ <% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+      <li><%= error[0] %></li>
+    <% end %>
+  </ul>
  <% end %>
+
+
+
 <h1> Please sign up </h1>
 <form action="/users" method="post">
   <label for="email">
