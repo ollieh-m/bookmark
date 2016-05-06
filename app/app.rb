@@ -5,13 +5,18 @@ require 'sinatra/flash'
 require_relative 'data_mapper_setup.rb'
 
 class BookmarkManager < Sinatra::Base
-	enable :sessions
+	use Rack::MethodOverride
+  enable :sessions
   register Sinatra::Flash
 	set :session_secret, 'super secret'
 
   helpers do
     def current_user
-      @logged_in_user ||= User.get(session[:user_id])
+      if session[:user_id]
+        @current_user ||= User.get(session[:user_id])
+      else
+        @current_user = nil
+      end
     end
     def create_user
       @user = User.new(email: params[:email])
@@ -20,9 +25,11 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
-	get '/users' do
+  #user signup
+
+	get '/users/new' do
     @user = User.new
-    erb :signup
+    erb :'users/new'
 	end
 
 	post '/users' do
@@ -34,9 +41,11 @@ class BookmarkManager < Sinatra::Base
       @user.errors.each do |error|
         flash.now[:errors] << error
       end
-      erb :signup
+      erb :'users/new'
     end
 	end
+
+  #user sign in
 
   get '/sessions/new' do
     erb :'sessions/new'
@@ -48,9 +57,23 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = user.id
       redirect '/links'
     else
-      flash.now[:errors] = [['Password or email address is wrong']]
+      flash[:errors] = [['Password or email address is wrong']]
       redirect '/sessions/new'
     end
+  end
+
+  #user signout
+
+  delete '/sessions' do
+    flash[:report] = "Goodbye #{current_user.email}"
+    session[:user_id] = nil
+    redirect '/links'
+  end
+
+  #links
+
+  get '/' do
+    redirect '/links'
   end
 
   get '/links' do
@@ -71,6 +94,8 @@ class BookmarkManager < Sinatra::Base
     link.save
   	redirect '/links'
   end
+
+  #tags
 
   post '/tag_filter' do
     redirect("/tags/#{params[:tag_filter]}")
