@@ -14,6 +14,7 @@ class BookmarkManager < Sinatra::Base
     def create_user
       @user = User.new(email: params[:email])
       @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
       @user.save
     end
   end

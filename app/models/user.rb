@@ -4,6 +4,9 @@ class User
   
   include BCrypt
   include DataMapper::Resource
+
+  attr_reader :password
+  attr_accessor :password_confirmation
     
   property :id,   		Serial 
   property :email,  	String
@@ -13,5 +16,7 @@ class User
  	@password = Password.create(actual_password)
     self.password_hash = @password
   end
-  
+
+  validates_confirmation_of :password
+
 end
