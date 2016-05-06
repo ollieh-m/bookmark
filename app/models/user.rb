@@ -5,7 +5,7 @@ class User
   include BCrypt
   include DataMapper::Resource
 
-  attr_reader :password, :password_hash
+  attr_reader :password
   attr_accessor :password_confirmation
     
   property :id, Serial 
@@ -13,7 +13,7 @@ class User
   property :password_hash, Text
 
   def self.authenticate(email_input,password_input)
-    user = self.first(email: email_input)
+    user = first(email: email_input)
     if user && Password.new(user.password_hash) == password_input
       user
     else
