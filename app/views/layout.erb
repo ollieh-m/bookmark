@@ -6,8 +6,12 @@
   </head>
 
   <body>
-    <% if flash[:error] %>
-      <%= flash[:error] %>
+    <% if flash[:errors] %>
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li><%= error[0] %></li>
+        <% end %>
+      </ul>
     <% end %>
     <% if current_user %>
       <h2>Welcome <%= @logged_in_user.email %></h2>

@@ -9,6 +9,7 @@ require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
 require './app/app'
+require './spec/features/web_helper'
 
 Capybara.app = BookmarkManager
 
