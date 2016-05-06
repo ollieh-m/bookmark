@@ -27,6 +27,6 @@ class User
   end
 
   validates_confirmation_of :password
-  validates_format_of :email, with: /[a-zA-Z_\.]+@[a-zA-Z_\.]+(\.com)|(\.co\.uk)|(\.org)|(\.net)/
+  validates_format_of :email, with: /[a-zA-Z_\.]+@[a-zA-Z_]+\.[a-zA-Z.]+/
 
 end
