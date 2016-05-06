@@ -4,7 +4,6 @@ feature 'user signup' do
     sign_up
     expect(User.all.count).to eq 1
     expect(User.first.email).to eq('user@example.com')
-    expect(page).to have_content('Welcome user@example.com')
   end
 
   scenario 'providing a password confirmation that does not match the password' do
